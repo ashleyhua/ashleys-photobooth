@@ -1,0 +1,792 @@
+/* reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* main page background - default neutral beige */
+body {
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(135deg, #faf8f3 0%, #e8dcc8 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: background 0.6s ease;
+}
+
+/* vintage mode page background - warm brown tones */
+body.vintage-theme {
+    background: linear-gradient(135deg, #f4f1e8 0%, #c9b8a0 100%);
+}
+
+/* modern mode page background - soft pink and blue tones */
+body.modern-theme {
+    background: linear-gradient(135deg, #fff5fb 0%, #fef0f8 50%, #f0f8ff 100%);
+}
+
+/* main container box - default white background */
+.container {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 30px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15),
+                0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 50px;
+    text-align: center;
+    transition: all 0.6s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* vintage mode container - cream/beige background with brown shadow */
+.container.vintage-theme {
+    background: rgba(250, 245, 235, 0.98);
+    box-shadow: 0 15px 40px rgba(90, 70, 50, 0.4),
+                inset 0 0 100px rgba(139, 69, 19, 0.05);
+    border: 2px solid rgba(139, 69, 19, 0.2);
+}
+
+/* modern mode container - white/pink background with pink shadow */
+.container.modern-theme {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 250, 253, 0.98));
+    box-shadow: 0 25px 70px rgba(255, 182, 193, 0.15),
+                0 10px 30px rgba(216, 191, 216, 0.12);
+    border: 1px solid rgba(255, 220, 235, 0.4);
+}
+
+/* main title "ashley's photobooth" - default brown text */
+h1 {
+    font-size: 3em;
+    color: #6b5a4a;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.6s ease;
+    font-weight: bold;
+    letter-spacing: 4px;
+    font-family: 'Georgia', 'Courier New', serif;
+}
+
+/* vintage mode title - dark brown text with shadow */
+.container.vintage-theme h1 {
+    color: #5a3a1a;
+    text-shadow: 3px 3px 0px rgba(139, 69, 19, 0.2),
+                 1px 1px 10px rgba(139, 69, 19, 0.1);
+    font-family: 'Courier New', monospace;
+}
+
+/* modern mode title - purple gradient text */
+.container.modern-theme h1 {
+    background: linear-gradient(135deg, #d8a7ca, #c994c7, #b19cd9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    font-family: 'Georgia', serif;
+}
+
+/* section headings (like "smile!") - default brown text with elegant font */
+h2 {
+    color: #6b5a4a;
+    margin-bottom: 20px;
+    transition: color 0.6s ease;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: normal;
+}
+
+/* vintage mode section headings - dark brown with elegant font */
+.container.vintage-theme h2 {
+    color: #5a3a1a;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* modern mode section headings - purple with elegant font */
+.container.modern-theme h2 {
+    color: #866398;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* smaller headings (like "crop photo") - default brown text */
+h3 {
+    color: #6b5a4a;
+    margin-bottom: 15px;
+    transition: color 0.6s ease;
+}
+
+/* vintage mode smaller headings - dark brown */
+.container.vintage-theme h3 {
+    color: #5a3a1a;
+}
+
+/* modern mode smaller headings - purple */
+.container.modern-theme h3 {
+    color: #c994c7;
+}
+
+/* subtitle text "choose your style" - default gray */
+.subtitle {
+    font-size: 1.3em;
+    color: #9a8a7a;
+    margin-bottom: 50px;
+    transition: all 0.6s ease;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+/* vintage mode subtitle - brown and italic */
+.container.vintage-theme .subtitle {
+    color: #6b4423;
+    font-style: italic;
+}
+
+/* modern mode subtitle - purple gradient */
+.container.modern-theme .subtitle {
+    background: linear-gradient(135deg, #d8a7ca, #b19cd9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* mode selection buttons container (vintage/modern buttons) */
+.mode-selection {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* individual mode button styling (vintage and modern buttons) */
+.mode-btn {
+    flex: 1;
+    min-width: 220px;
+    padding: 50px 45px;
+    font-size: 1.4em;
+    font-family: 'Georgia', serif;
+    border: 2px solid rgba(155, 138, 122, 0.3);
+    background: rgba(255, 255, 255, 0.8);
+    color: #6b5a4a;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* emoji icon inside mode buttons */
+.mode-icon {
+    font-size: 2.5em;
+    display: block;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+/* text label inside mode buttons (vintage/modern text) */
+.mode-label {
+    font-size: 0.9em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* decorative overlay on mode buttons */
+.mode-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    transition: all 0.4s ease;
+}
+
+/* mode button hover effect - lifts up */
+.mode-btn:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* emoji grows on hover */
+.mode-btn:hover .mode-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* vintage button hover - beige/brown background */
+.mode-btn:nth-child(1):hover {
+    background: linear-gradient(135deg, rgba(244, 241, 232, 0.95), rgba(212, 197, 176, 0.95));
+    border-color: rgba(90, 58, 26, 0.4);
+}
+
+/* modern button hover - pink background */
+.mode-btn:nth-child(2):hover {
+    background: linear-gradient(135deg, rgba(255, 245, 251, 0.95), rgba(255, 235, 245, 0.95));
+    border-color: rgba(216, 167, 202, 0.4);
+}
+
+/* vintage texture overlay on buttons */
+.mode-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(139, 69, 19, 0.03) 2px,
+        rgba(139, 69, 19, 0.03) 4px
+    );
+}
+
+/* hides elements when not needed */
+.hidden {
+    display: none !important;
+}
+
+/* camera video preview box */
+#video-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 20px;
+    border: 5px solid #8B4513;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    aspect-ratio: 3 / 4;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* modern mode camera preview - wider for landscape photos */
+#video-container.modern {
+    max-width: 500px;
+    aspect-ratio: 4 / 3;
+}
+
+/* vintage mode camera preview - dark brown border with shadow */
+.container.vintage-theme #video-container {
+    border-color: #5a3a1a;
+    border-width: 6px;
+    box-shadow: 0 10px 40px rgba(90, 58, 26, 0.5),
+                inset 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+/* modern mode camera preview - purple gradient border */
+.container.modern-theme #video-container {
+    border: 4px solid transparent;
+    background: linear-gradient(#000, #000) padding-box,
+                linear-gradient(135deg, #d8a7ca, #c994c7, #b19cd9) border-box;
+    box-shadow: 0 15px 50px rgba(216, 167, 202, 0.3),
+                0 5px 20px rgba(201, 148, 199, 0.2);
+}
+
+/* live camera video feed */
+#video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scaleX(-1);
+}
+
+/* vintage mode video filter - black and white */
+#video.vintage-filter {
+    filter: grayscale(100%) contrast(1.3);
+}
+
+/* preview canvas for captured photo */
+#preview-canvas {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+/* countdown numbers (3, 2, 1) - white text with shadow and elegant font */
+.countdown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 120px;
+    color: white;
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+    font-weight: normal;
+    z-index: 10;
+    font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* white flash effect when taking photo */
+.flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s;
+}
+
+/* flash appears briefly */
+.flash.active {
+    opacity: 1;
+}
+
+/* grid layout for showing 4 photos (2x2) */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+/* individual photos in grid - brown border */
+.photo-grid img {
+    width: 100%;
+    height: auto;
+    border: 2px solid #8B4513;
+    border-radius: 5px;
+}
+
+/* preview of photo strip before finalizing */
+.photo-strip-preview {
+    margin: 20px auto;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+/* individual photos in strip preview - brown border */
+.photo-strip-preview img {
+    width: 100%;
+    max-width: 300px;
+    border: 2px solid #8B4513;
+    border-radius: 5px;
+}
+
+/* regular buttons (cancel, continue, etc) - default styling */
+.btn {
+    padding: 15px 40px;
+    font-size: 1.1em;
+    font-family: 'Courier New', monospace;
+    border: 2px solid rgba(155, 138, 122, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+    color: #6b5a4a;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* button hover - brown background with white text */
+.btn:hover {
+    background: #6b5a4a;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107, 90, 74, 0.25);
+}
+
+/* larger choice buttons */
+.choice-btn {
+    min-width: 200px;
+    padding: 20px 40px;
+    font-size: 1.15em;
+}
+
+/* icon inside buttons (emojis) */
+.btn-icon {
+    font-size: 1.3em;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+
+/* vintage mode buttons - beige background with brown text */
+.container.vintage-theme .btn {
+    border-color: rgba(90, 58, 26, 0.3);
+    background: rgba(244, 241, 232, 0.9);
+    color: #5a3a1a;
+}
+
+/* vintage mode button hover - dark brown background */
+.container.vintage-theme .btn:hover {
+    background: #5a3a1a;
+    color: #f4f1e8;
+    border-color: #5a3a1a;
+}
+
+/* modern mode buttons - white background with purple text */
+.container.modern-theme .btn {
+    border: 2px solid rgba(216, 167, 202, 0.3);
+    background: rgba(255, 255, 255, 0.95);
+    color: #c994c7;
+}
+
+/* modern mode button hover - purple gradient background */
+.container.modern-theme .btn:hover {
+    background: linear-gradient(135deg, #d8a7ca, #c994c7);
+    color: white;
+    border-color: transparent;
+}
+
+/* disabled buttons - faded and can't click */
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* customization section layout */
+.customization-options {
+    text-align: left;
+    margin: 20px 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* each customization option (background, frame, date, etc) */
+.option-group {
+    margin: 20px 0;
+}
+
+/* labels for customization options - brown text */
+.option-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #8B4513;
+    font-weight: bold;
+}
+
+/* text input boxes (for notes) - brown border */
+input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #8B4513;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+}
+
+/* color picker circles container */
+.color-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* individual color circle buttons - brown border */
+.color-option {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #8B4513;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+/* color circle hover and selected - grows bigger */
+.color-option:hover, .color-option.selected {
+    transform: scale(1.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* final photostrip canvas on result screen */
+#photostrip-canvas {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* container for the result canvas */
+.result-canvas-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* download and create another buttons on result screen */
+.result-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* vintage photostrip drop-down animation */
+#photostrip-canvas.vintage-drop {
+    animation: dropDown 1s ease-out;
+}
+
+/* vintage drop animation - falls from top */
+@keyframes dropDown {
+    0% {
+        transform: translateY(-100vh) rotate(-5deg);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(20px) rotate(2deg);
+    }
+    80% {
+        transform: translateY(-10px) rotate(-1deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+    }
+}
+
+/* modern photostrip fade-in animation */
+#photostrip-canvas.modern-reveal {
+    animation: fadeInScale 0.8s ease-out;
+}
+
+/* modern fade animation - smooth scale up */
+@keyframes fadeInScale {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* upload photo drag-and-drop area - dashed border */
+.upload-area {
+    border: 3px dashed rgba(155, 138, 122, 0.4);
+    padding: 40px;
+    border-radius: 10px;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* upload area hover - pink background */
+.upload-area:hover {
+    background: rgba(255, 240, 250, 0.8);
+    border-color: rgba(216, 167, 202, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(216, 167, 202, 0.2);
+}
+
+/* vintage mode upload area hover - beige background */
+.container.vintage-theme .upload-area:hover {
+    background: rgba(244, 241, 232, 0.9);
+    border-color: rgba(90, 58, 26, 0.5);
+}
+
+/* modern mode upload area hover - pink background */
+.container.modern-theme .upload-area:hover {
+    background: rgba(255, 245, 251, 0.9);
+    border-color: rgba(216, 167, 202, 0.7);
+}
+
+/* individual photo item wrapper */
+.photo-item {
+    position: relative;
+}
+
+/* photo thumbnails in grid */
+.photo-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* checkbox label styling (for "include date") */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+/* checkbox input */
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* hide canvas elements by default */
+canvas {
+    display: none;
+}
+
+/* show canvas when needed */
+canvas.show {
+    display: block;
+}
+
+/* crop interface section */
+#crop-container {
+    margin: 20px 0;
+}
+
+/* crop preview box - brown border */
+#crop-preview-container {
+    position: relative;
+    max-width: 600px;
+    margin: 20px auto;
+    border: 3px solid #8B4513;
+    border-radius: 10px;
+    overflow: hidden;
+    touch-action: none;
+    user-select: none;
+    background: #f0f0f0;
+}
+
+/* image wrapper for cropping */
+#image-mask {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* image being cropped */
+#crop-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* draggable crop selection box - white border with glowing effect */
+#crop-box {
+    position: absolute;
+    box-sizing: border-box;
+    border: 4px solid white;
+    background: rgba(255, 255, 255, 0.1);
+    cursor: move;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(255, 255, 255, 0.8),
+                inset 0 0 20px rgba(255, 255, 255, 0.3);
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* pulsing glow animation on crop box */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5),
+                    0 0 20px rgba(255, 255, 255, 0.8),
+                    inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5),
+                    0 0 30px rgba(255, 255, 255, 1),
+                    inset 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* "drag to position" text inside crop box - brown text on white background */
+#crop-box::after {
+    content: 'Drag to position';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    color: #8B4513;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* zoom slider control section */
+.zoom-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+/* zoom label - brown text */
+.zoom-control label {
+    color: #8B4513;
+    font-weight: bold;
+}
+
+/* zoom slider input */
+#zoom-slider {
+    width: 200px;
+    cursor: pointer;
+}
+
+/* crop confirm/cancel buttons */
+.crop-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* mobile responsive styles for smaller screens */
+@media (max-width: 600px) {
+    /* reduce padding on mobile */
+    .container {
+        padding: 20px;
+    }
+
+    /* smaller title on mobile */
+    h1 {
+        font-size: 2em;
+    }
+
+    /* smaller mode buttons on mobile */
+    .mode-btn {
+        min-width: 150px;
+        padding: 40px 20px;
+        font-size: 1.2em;
+    }
+
+    /* smaller countdown numbers on mobile */
+    .countdown {
+        font-size: 60px;
+    }
+
+    /* smaller color circles on mobile */
+    .color-option {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* smaller crop instruction text on mobile */
+    #crop-box::after {
+        font-size: 0.7em;
+        padding: 5px 10px;
+    }
+
+    /* smaller zoom slider on mobile */
+    #zoom-slider {
+        width: 150px;
+    }
+}

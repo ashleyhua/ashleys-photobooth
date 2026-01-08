@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashley's Photobooth</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="flash" id="flash"></div>
+    
+    <div class="container">
+        <!-- home screen -->
+        <div id="home-screen">
+            <h1>Ashley's Photobooth</h1>
+            <p class="subtitle">Choose Your Style</p>
+            <div class="mode-selection">
+                <button class="mode-btn" onclick="selectMode('vintage')">
+                    <span class="mode-icon">📸</span>
+                    <span class="mode-label">Vintage</span>
+                </button>
+                <button class="mode-btn" onclick="selectMode('modern')">
+                    <span class="mode-icon">✨</span>
+                    <span class="mode-label">Modern</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- upload choice screen (modern only) -->
+        <div id="upload-choice-screen" class="hidden">
+            <h2>How would you like to add photos?</h2>
+            <div class="mode-selection">
+                <button class="btn" onclick="startCamera()">
+                    📷 Take Photos
+                </button>
+                <button class="btn" onclick="chooseUpload()">
+                    📁 Upload Photos
+                </button>
+            </div>
+            <button class="btn" onclick="goHome()">← Back</button>
+        </div>
+
+        <!-- camera screen -->
+        <div id="camera-screen" class="hidden">
+            <h2 id="camera-title">Smile!</h2>
+            <div id="video-container">
+                <video id="video" autoplay playsinline></video>
+                <canvas id="preview-canvas"></canvas>
+                <div id="countdown-display" class="countdown"></div>
+            </div>
+            <p id="photo-counter">Photo 1 of 4</p>
+            <button class="btn" onclick="stopCamera()">Cancel</button>
+        </div>
+
+        <!-- upload screen -->
+        <div id="upload-screen" class="hidden">
+            <h2>Upload Your Photos</h2>
+            <div class="upload-area" onclick="document.getElementById('file-input').click()">
+                <p>Click to upload 4 photos</p>
+                <p style="font-size: 0.9em; color: #572a96;">JPG, PNG accepted</p>
+            </div>
+            <input type="file" id="file-input" accept="image/*" multiple style="display: none;" onchange="handleFileUpload(event)">
+            <div id="crop-container" class="hidden">
+                <h3>Crop Photo <span id="crop-photo-number">1</span> of 4</h3>
+                <div id="crop-preview-container">
+                    <div id="image-mask">
+                      <img id="crop-image" />
+                      <div id="crop-box"></div>
+                    </div>
+                </div>                  
+                <div class="zoom-control">
+                    <label>Crop Size: </label>
+                    <input type="range" id="zoom-slider" min="50" max="100" value="80" oninput="updateCropZoom()">
+                </div>
+                <div class="crop-controls">
+                    <button class="btn" onclick="confirmCrop()">✓ Confirm</button>
+                    <button class="btn" onclick="cancelUpload()">Cancel</button>
+                </div>
+            </div>
+            <div class="photo-grid" id="upload-preview"></div>
+            <button class="btn" onclick="proceedToCustomization()" id="upload-proceed-btn" disabled>Continue</button>
+            <button class="btn" onclick="goHome()">Cancel</button>
+        </div>
+
+        <!-- customization screen -->
+        <div id="customization-screen" class="hidden">
+            <h2>Customize Your Photostrip</h2>
+            
+            <div class="photo-strip-preview" id="preview-strip"></div>
+            
+            <div class="customization-options">
+                <div class="option-group" id="background-option">
+                    <label>Background Color:</label>
+                    <div class="color-options">
+                        <div class="color-option selected" style="background: white;" onclick="selectBackground('white')"></div>
+                        <div class="color-option" style="background: black;" onclick="selectBackground('black')"></div>
+                    </div>
+                </div>
+
+                <div class="option-group hidden" id="frame-option">
+                    <label>Frame Color:</label>
+                    <div class="color-options">
+                        <div class="color-option selected" style="background: #fae1e1;" onclick="selectFrameColor('#FFE4E1')"></div>
+                        <div class="color-option" style="background: #fcebdb;" onclick="selectFrameColor('#E6E6FA')"></div>
+                        <div class="color-option" style="background: #fff7c3;" onclick="selectFrameColor('#FFDAB9')"></div>
+                        <div class="color-option" style="background: #e4f6d2;" onclick="selectFrameColor('#F0E68C')"></div>
+                        <div class="color-option" style="background: #c5f4f8;" onclick="selectFrameColor('#DDA0DD')"></div>
+                        <div class="color-option" style="background: #e0defc;" onclick="selectFrameColor('#B0E0E6')"></div>
+                        <div class="color-option" style="background: white;" onclick="selectFrameColor('white')"></div>
+                        <div class="color-option" style="background: black;" onclick="selectFrameColor('black')"></div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="include-date" onchange="toggleDate()">
+                        Include Date
+                    </label>
+                </div>
+
+                <div class="option-group hidden" id="note-option">
+                    <label>Add a Note:</label>
+                    <input type="text" id="note-input" placeholder="Enter your message..." maxlength="50" oninput="updateNote()">
+                </div>
+            </div>
+
+            <button class="btn" onclick="generatePhotostrip()">Create Photostrip</button>
+            <button class="btn" onclick="goHome()">Start Over</button>
+        </div>
+
+        <!-- result screen -->
+        <div id="result-screen" class="hidden">
+            <h2>Your Photostrip is Ready!</h2>
+            <div class="result-canvas-container">
+                <canvas id="photostrip-canvas" class="show"></canvas>
+            </div>
+            <div class="result-buttons">
+                <button class="btn" onclick="downloadPhotostrip()">💌 Download</button>
+                <button class="btn" onclick="goHome()">Create Another</button>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="hidden-canvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
